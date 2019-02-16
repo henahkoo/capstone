@@ -84,4 +84,3 @@ for element in scaled_imgs:
     plt.axis('off')
     plt.savefig('./dataset/'+str(count)+'.png')
     count=count+1
-  
