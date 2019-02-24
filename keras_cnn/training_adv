@@ -1,0 +1,18 @@
+#오래 또는 많은 데이터 학습시(여기선 epoch가 많음) checkpoint, stoppoint 사용. loss값 비교해서 더 좋으면 경신
+
+X_train = np.append(X_train,X_test, axis=0)
+Y_train = np.append(Y_train,Y_test, axis=0)
+ 
+# Save Model with CheckPoint & StopPoint
+from keras.callbacks import ModelCheckpoint,EarlyStopping
+import os
+import datetime
+ 
+Datetime = datetime.datetime.now().strftime('%m%d_%H%M')
+modelpath="Gersang.h5"
+ 
+checkpointer = ModelCheckpoint(filepath=modelpath, monitor='loss', verbose=1, save_best_only=True)
+early_stopping_callback = EarlyStopping(monitor='loss', patience=100)
+ 
+# Learning and save models
+model.fit(X_train, Y_train, validation_split=0.1, nb_epoch=500, batch_size=10, verbose=0, callbacks=[early_stopping_callback,checkpointer])
