@@ -105,12 +105,12 @@ def remove_border(contour, ary):
 
 '''Dilate the image until there are just a few connected components.
    Return contours for these components.'''
-def find_components(edges, max_components=19):
+def find_components(edges, max_components=16):
     count = 21
     dilation = 5
     n = 1
     
-    while count>19:
+    while count>16:
         n += 1
         dilated_image = dilate(edges, N=3, iterations=n)
         #cv2.imshow('check', dilated_image)
